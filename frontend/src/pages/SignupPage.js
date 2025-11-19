@@ -1,27 +1,42 @@
+// src/pages/SignupPage.js
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase"; // 경로 주의
 
-function SignupPage({ signup }) {
+function SignupPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    
+    // 비밀번호 확인 로직 (친구 코드 유지)
     if (password !== confirmPassword) {
       alert('Passwords do not match.');
       return;
     }
-    const success = signup(email, password);
-    if (success) {
+
+    try {
+      // 🔥 Firebase로 진짜 유저 생성
+      await createUserWithEmailAndPassword(auth, email, password);
       alert('Signup successful! Please log in.');
       navigate('/login');
-    } else {
-      alert('Email already exists.');
+    } catch (error) {
+      console.error("Signup Error:", error);
+      if (error.code === 'auth/email-already-in-use') {
+        alert('Email already exists.');
+      } else if (error.code === 'auth/weak-password') {
+        alert('Password should be at least 6 characters.');
+      } else {
+        alert('Signup failed: ' + error.message);
+      }
     }
   };
 
+  // 👇 화면 디자인은 친구 코드 100% 유지
   return (
     <div className="container">
       <h2>Sign Up</h2>
@@ -44,6 +59,7 @@ function SignupPage({ signup }) {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              placeholder="Min 6 characters"
               required
             />
           </div>
