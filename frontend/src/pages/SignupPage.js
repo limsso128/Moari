@@ -7,6 +7,7 @@ function SignupPage() {
   const navigate = useNavigate();
   const { showNotification } = useContext(NotificationContext); // showNotification 가져오기
   const [email, setEmail] = useState('');
+  const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -24,7 +25,7 @@ function SignupPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, userId }),
       });
 
       const data = await response.json();
@@ -53,6 +54,16 @@ function SignupPage() {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="userId">아이디</label>
+            <input
+              type="text"
+              id="userId"
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
               required
             />
           </div>

@@ -2,6 +2,21 @@ const router = require('express').Router();
 const admin = require('../firebase');
 const db = admin.firestore();
 
+// Middleware to verify Firebase ID token
+const verifyToken = async (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(403).send('Unauthorized');
+    }
+    const idToken = authHeader.split('Bearer ')[1];
+    try {
+        req.user = await admin.auth().verifyIdToken(idToken);
+        next();
+    } catch (error) {
+        return res.status(403).send('Unauthorized');
+    }
+};
+
 // Get all clubs
 router.get('/', async (req, res) => {
     try {
@@ -71,6 +86,64 @@ router.get('/user/:userId', async (req, res) => {
     } catch (error) {
         console.error("Fetch User Clubs Error:", error);
         res.status(500).send({ message: 'Error fetching user clubs', error: error.message });
+    }
+});
+
+// Update a club
+router.put('/:id', verifyToken, async (req, res) => {
+    const { id } = req.params;
+    const { name, oneLineIntro, description, interviewDate, tags, clubLink, imageUrl } = req.body;
+    const { uid } = req.user;
+
+    try {
+        const clubRef = db.collection('clubs').doc(id);
+        const doc = await clubRef.get();
+
+        if (!doc.exists) {
+            return res.status(404).json({ message: '동아리를 찾을 수 없습니다.' });
+        }
+
+        const clubData = doc.data();
+        if (clubData.userId !== uid) {
+            return res.status(403).json({ message: '이 동아리를 수정할 권한이 없습니다.' });
+        }
+
+        await clubRef.update({
+            name,
+            oneLineIntro,
+            description,
+            interviewDate,
+            tags,
+            clubLink,
+            imageUrl,
+            updatedAt: admin.firestore.FieldValue.serverTimestamp()
+        });
+
+        res.status(200).json({ message: '동아리 정보가 성공적으로 수정되었습니다.' });
+    } catch (error) {
+        res.status(500).json({ message: '서버 오류가 발생했습니다.', error: error.message });
+    }
+});
+
+// Delete a club
+router.delete('/:id', verifyToken, async (req, res) => {
+    const { id } = req.params;
+    const { uid } = req.user;
+
+    try {
+        const clubRef = db.collection('clubs').doc(id);
+        const doc = await clubRef.get();
+
+        if (!doc.exists) {
+            return res.status(404).json({ message: '동아리를 찾을 수 없습니다.' });
+        }
+        if (doc.data().userId !== uid) {
+            return res.status(403).json({ message: '이 동아리를 삭제할 권한이 없습니다.' });
+        }
+        await clubRef.delete();
+        res.status(200).json({ message: '동아리가 성공적으로 삭제되었습니다.' });
+    } catch (error) {
+        res.status(500).json({ message: '서버 오류가 발생했습니다.', error: error.message });
     }
 });
 

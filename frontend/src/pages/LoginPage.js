@@ -8,14 +8,14 @@ import { NotificationContext } from '../context/NotificationContext'; // Notific
 function LoginPage() {
   const navigate = useNavigate();
   const { showNotification } = useContext(NotificationContext); // showNotification 가져오기
-  const [email, setEmail] = useState('');
+  const [userId, setUserId] = useState(''); // email을 userId로 변경
   const [password, setPassword] = useState('');
 
   // 1. 이메일 로그인 처리
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!email || !password) {
-      showNotification('이메일과 비밀번호를 모두 입력해주세요.', 'error');
+    if (!userId || !password) {
+      showNotification('아이디와 비밀번호를 모두 입력해주세요.', 'error');
       return;
     }
     try {
@@ -24,7 +24,7 @@ function LoginPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ userId, password }),
       });
 
       const data = await response.json();
@@ -38,7 +38,7 @@ function LoginPage() {
       navigate('/');
     } catch (error) {
       console.error("Login Error:", error);
-      showNotification('이메일 또는 비밀번호가 올바르지 않습니다.', 'error');
+      showNotification('아이디 또는 비밀번호가 올바르지 않습니다.', 'error');
     }
   };
 
@@ -77,12 +77,12 @@ function LoginPage() {
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="email">이메일</label>
+            <label htmlFor="userId">아이디</label>
             <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              id="userId"
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
               required
             />
           </div>

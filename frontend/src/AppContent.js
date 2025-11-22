@@ -8,6 +8,7 @@ import MainPage from './pages/main';
 import ClubRegistrationPage from './pages/register';
 import ClubDetailPage from './pages/detail';
 import LoginPage from './pages/LoginPage';
+import ClubEditPage from './pages/ClubEditPage'; // 수정 페이지 import
 import SignupPage from './pages/SignupPage';
 import MyPage from './pages/MyPage';
 import Navbar from './components/Navbar';
@@ -59,6 +60,10 @@ function AppContent() {
           <Route 
             path="/register" 
             element={currentUser ? <ClubRegistrationPage /> : <LoginPage />}
+          />
+          <Route 
+            path="/club/edit/:id" 
+            element={currentUser ? <ClubEditPage /> : <LoginPage />}
           />
           <Route 
             path="/mypage" 

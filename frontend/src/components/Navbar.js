@@ -26,7 +26,6 @@ function Navbar({ currentUser, logout, searchTerm, onSearchChange }) {
         ) : (
           <>
             <Link to="/login" className="nav-link">Login</Link>
-            <Link to="/signup" className="nav-link">Sign up</Link>
           </>
         )}
       </div>
