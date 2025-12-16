@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Navbar({ currentUser, logout, searchTerm, onSearchChange }) {
+function Navbar({ currentUser, logout, searchTerm, onSearchChange, unreadCount }) {
   return (
     <nav>
       <div className="nav-left">
@@ -19,6 +19,9 @@ function Navbar({ currentUser, logout, searchTerm, onSearchChange }) {
       <div className="nav-links">
         {currentUser ? (
           <>
+            <Link to="/chat" className="nav-link">
+              메시지
+            </Link>
             <Link to="/mypage" className="nav-link">마이페이지</Link>
             <Link to="/register" className="nav-link">동아리 등록</Link>
             <button onClick={logout} className="nav-link">로그아웃</button>
