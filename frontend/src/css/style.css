@@ -112,6 +112,23 @@ nav {
   color: var(--primary-color);
 }
 
+.navbar-unread-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #F4B9B8;
+  color: white;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0 5px;
+}
+
 h2 {
   font-family: var(--heading-font);
   color: var(--text-color);
@@ -136,7 +153,7 @@ h2 {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 650px; /* Set a fixed height for uniform card size */
+  height: 700px; /* Set a fixed height for uniform card size */
 }
 
 .club-card:hover {
@@ -312,6 +329,48 @@ h2 {
   padding: 3rem;
   border-radius: 15px;
   box-shadow: 0 4px 12px var(--shadow-color);
+  text-align: center;
+}
+
+.club-detail-divider {
+  width: 100%;
+  height: 3px;
+  background-color: #FFE5D4;
+  margin: 2rem 0;
+  border: none;
+}
+
+.club-detail h1,
+.club-detail h2,
+.club-detail h3,
+.club-detail h4,
+.club-detail h5,
+.club-detail h6,
+.club-detail p,
+.club-detail ul,
+.club-detail ol,
+.club-detail blockquote,
+.club-detail pre {
+  text-align: center;
+}
+
+.club-detail ul,
+.club-detail ol {
+  display: inline-block;
+  text-align: left;
+}
+
+.club-detail a {
+  color: #7AA2E0;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.club-detail a:hover {
+  color: #5A8FD0;
+  border-bottom-color: #7AA2E0;
 }
 
 .club-image-container {
@@ -607,4 +666,520 @@ h2 {
   font-size: 0.9rem; /* Increased font size */
   font-weight: 500;
   list-style: none;
+}
+
+/* MyPage action buttons styles */
+.club-card-footer-actions {
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 20px;
+  font-family: var(--heading-font);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.edit-btn {
+  background-color: #B4D7E8;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #9CC7DC;
+}
+
+.delete-btn {
+  background-color: #F5B7B1;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #F1948A;
+}
+
+/* Club Detail Info Section */
+.club-info-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 3px solid #FFE5D4;
+  text-align: left;
+}
+
+.club-tags-detail,
+.club-link-detail,
+.club-interview-detail {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.club-tags-detail {
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.club-tags-detail strong,
+.club-link-detail strong,
+.club-interview-detail strong {
+  font-size: 1.2rem;
+  color: #5A9FBD;
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+.club-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.club-tag {
+  background-color: #E8C2C0;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(232, 194, 192, 0.3);
+}
+
+.club-link-button {
+  display: inline-block;
+  background-color: #B4D7E8;
+  color: white !important;
+  padding: 0.75rem 2.5rem;
+  border-radius: 30px;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(180, 215, 232, 0.4);
+  border-bottom: none !important;
+}
+
+.club-link-button:hover {
+  background-color: #9CC7DC;
+  color: white !important;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(180, 215, 232, 0.6);
+}
+
+.interview-date {
+  display: inline-block;
+  background: linear-gradient(135deg, #F5E6D3 0%, #FFE5D4 100%);
+  color: #8B7355;
+  padding: 0.6rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  box-shadow: 0 3px 10px rgba(245, 230, 211, 0.5);
+}
+
+/* Chat Button Container */
+.chat-button-container {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.chat-btn {
+  background-color: #E8C2C0;
+  color: white;
+  padding: 1rem 3rem;
+  border: none;
+  border-radius: 30px;
+  font-family: var(--heading-font);
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(232, 194, 192, 0.4);
+}
+
+.chat-btn:hover {
+  background-color: #D0A09E;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(232, 194, 192, 0.6);
+}
+
+/* Chat Page Styles */
+.chat-page-container {
+  display: flex;
+  height: calc(100vh - 80px);
+  background-color: var(--background-color);
+}
+
+/* 왼쪽 사이드바 */
+.chat-sidebar {
+  width: 320px;
+  background-color: white;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.chat-sidebar-header {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  height: 54px;
+}
+
+.back-btn-small {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+  font-family: var(--heading-font);
+}
+
+.back-btn-small:hover {
+  color: #f0f0f0;
+}
+
+.conversations-sidebar-list {
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.no-conversations {
+  text-align: center;
+  padding: 2rem;
+  color: #999;
+}
+
+.conversation-sidebar-item {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.conversation-sidebar-item:hover {
+  background-color: #f9f9f9;
+}
+
+.conversation-sidebar-item.active {
+  background-color: #fff0ef;
+  border-left: 3px solid var(--primary-color);
+}
+
+.conversation-sidebar-info h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.last-message-sidebar {
+  margin: 0.25rem 0;
+  color: #999;
+  font-size: 0.85rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.club-info-sidebar {
+  margin: 0.25rem 0 0 0;
+  color: #8db3f1;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.unread-badge-sidebar {
+  background-color: #F4B9B8;
+  color: white;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* 오른쪽 채팅 영역 */
+.chat-page {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  background-color: var(--background-color);
+}
+
+.chat-header {
+  background-color: var(--primary-color);
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0;
+  font-family: var(--heading-font);
+}
+
+.back-btn:hover {
+  color: #f0f0f0;
+}
+
+.chat-header-info {
+  flex-grow: 1;
+  text-align: left;
+  margin-left: -100px;
+}
+
+.chat-header-info h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: white;
+}
+
+.chat-header-info .club-name {
+  margin: 0.25rem 0 0 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+.chat-messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 150px;
+}
+
+.no-messages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #999;
+}
+
+.message {
+  display: flex;
+  margin-bottom: 1rem;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.message.sent {
+  justify-content: flex-end;
+}
+
+.message.received {
+  justify-content: flex-start;
+}
+
+.message-content {
+  max-width: 70%;
+  padding: 0.75rem 1.25rem;
+  border-radius: 15px;
+}
+
+.message.sent .message-content {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.message.received .message-content {
+  background-color: #f0f0f0;
+  color: var(--text-color);
+}
+
+.message-content p {
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.message-time {
+  font-size: 0.75rem;
+  color: #999;
+  flex-shrink: 0;
+  min-width: 45px;
+  text-align: center;
+}
+
+.message-status {
+  font-size: 0.7rem;
+  color: #999;
+  margin-top: 0.25rem;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.message-status.read {
+  color: #999;
+}
+
+.message-status.unread {
+  color: #999;
+}
+
+.date-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 0;
+  font-size: 0.85rem;
+  color: #999;
+  gap: 1rem;
+}
+
+.date-divider::before,
+.date-divider::after {
+  content: '';
+  flex-grow: 1;
+  height: 1px;
+  background-color: #e0e0e0;
+}
+
+.chat-input-form {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background-color: white;
+  border-top: 1px solid var(--border-color);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+.chat-input {
+  flex-grow: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 25px;
+  font-family: var(--heading-font);
+  font-size: 1rem;
+  outline: none;
+}
+
+.chat-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(232, 194, 192, 0.2);
+}
+
+.send-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-family: var(--heading-font);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.send-btn:hover {
+  background-color: var(--primary-hover-color);
+}
+
+/* Conversations List */
+.conversations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.conversation-item {
+  background-color: var(--card-background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.conversation-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateX(5px);
+}
+
+.conversation-info {
+  flex-grow: 1;
+}
+
+.conversation-info h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-color);
+}
+
+.last-message {
+  margin: 0 0 0.5rem 0;
+  color: #999;
+  font-size: 0.95rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.club-info {
+  margin: 0;
+  color: #8db3f1;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.unread-badge {
+  background-color: #F4B9B8;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-left: 1rem;
+  flex-shrink: 0;
 }

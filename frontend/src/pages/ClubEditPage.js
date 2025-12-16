@@ -80,9 +80,10 @@ function ClubEditPage() {
     }
 
     const formattedInterviewDate = interviewDate.toISOString().split('T')[0];
-    const token = await currentUser.getIdToken();
-
+    
     try {
+      const token = await currentUser.getIdToken();
+
       const response = await fetch(`http://localhost:5000/api/clubs/${id}`, {
         method: 'PUT',
         headers: {
@@ -100,14 +101,23 @@ function ClubEditPage() {
         }),
       });
 
+      // Check if response is actually JSON before parsing
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        console.error('Server returned non-JSON response:', await response.text());
+        throw new Error('서버가 올바르지 않은 응답을 반환했습니다. 서버가 실행 중인지 확인해주세요.');
+      }
+
+      const data = await response.json();
+
       if (!response.ok) {
-        const data = await response.json();
         throw new Error(data.message || '동아리 정보 수정 중 오류가 발생했습니다.');
       }
 
       showNotification('동아리 정보가 성공적으로 수정되었습니다!', 'success');
       navigate(`/club/${id}`);
     } catch (error) {
+      console.error('Update error:', error);
       showNotification(error.message, 'error');
     }
   };
